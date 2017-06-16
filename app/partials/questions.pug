@@ -1,0 +1,21 @@
+include mixins.pug
+
+.questions.ui.form
+  form(action='' id="form")
+    each q, idx in questions
+      -
+        var i = idx+1;
+
+      .single-question
+        .label Pytanie #{i}: #{q.question}
+
+        case q.type
+          when "input": +textInput(i)
+          when "textarea": +textArea(i)
+          when "dropdown": +dropdown(q.values, i)
+          when "bool": +bool(q.values[0], q.values[1], i)
+          when "checkbox": +checkbox(q.values, i)
+          when "radio": +radio(q.values, i)
+          when "range": +range(i)
+          when "multi-radio": +multiRadio(q.values, q.opts.scale, i)
+          default: div: p "Zły typ"

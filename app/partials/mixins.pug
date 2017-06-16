@@ -1,0 +1,98 @@
+-
+  function attrs(prefix, i, n, x) {
+    var isMultiRadio = prefix === "multi-radio";
+    var y = !isMultiRadio ? i  : i + '-' + x ;
+    var id = prefix + '-' + y;
+
+    if(isMultiRadio && pool[i]["inputID"] === undefined)
+      pool[i]["inputID"] = new Set();
+
+    if(!isMultiRadio)
+      pool[i]["inputID"] = id;
+    else {
+      pool[i]["inputID"].add(id);
+    }
+
+    return {
+      "id": n !== undefined  ? id + '-' + n : id,
+      "name": id
+    };
+  }
+
+mixin textInput(i)
+  .ui.input.fluid.size.large
+    input(type="text", required=true)&attributes( attrs("text-input", i) )
+
+
+mixin textArea(i)
+  .ui.textarea
+    textarea(rows="5", required=true)&attributes( attrs("textarea", i) )
+
+
+mixin dropdown(vals, i)
+  select()&attributes( attrs("dropdown", i) )
+    each itm in vals
+      option(value=itm)
+        = itm
+
+
+mixin bool(falseText, trueText, i)
+  - var attr = attrs("bool", i);
+  .bool
+    span= falseText
+    .ui.toggle.checkbox
+      input(type="checkbox")&attributes( attr )
+      label(for=attr.id)
+    span= trueText
+
+
+mixin checkbox(vals, i)
+  .checkboxes
+    each chbx, idx in vals
+      - var attr = attrs("checkbox", i, idx);
+      .field
+        .ui.checkbox
+          input(type="checkbox", value=chbx)&attributes( attr )
+          label(for=attr.id)= chbx
+
+
+mixin radio(vals, i)
+  .radios
+    each radio, idx in vals
+      - var attr = attrs("radio", i,idx);
+      .field
+        .ui.radio.checkbox
+          input(type="radio"
+                value=radio
+                checked=idx===0 ? true : null)&attributes( attr )
+          label(for=attr.id)= radio
+
+
+mixin range(i)
+  .ranges
+    .ui.range
+      input(type="range", min=0, max=10, )&attributes( attrs("range", i) )
+    .range-value
+      .ui.input
+         input(type="text", id="range-" + i + "-val" )
+
+
+mixin multiRadio(vals, scale, i)
+  table.ui.definition.fixed.table
+    thead
+      tr
+        th
+        each itm in scale
+          th= itm
+    tbody
+      each itm, _idx in vals
+        tr
+          td= itm
+          each itm, idx in scale
+            - var attr = attrs("multi-radio", i, idx, _idx)
+            td
+              .ui.radio.checkbox
+                input(type="radio"
+                      value=itm
+                      checked=idx===0 ? true : null)&attributes( attr, i )
+                label(for=attr.id)
