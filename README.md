@@ -17,6 +17,7 @@ npm run build
 ```
 
 ## Description
+Project runs on `localhost:7559`
 Project uses `.csv` files to generate pool. Used file: `resources/questions.csv`. Row and cell separator can be set in `app/config.js`.
 Structure of file must be like shown beneath. Upper case keywords (without `<>`) must be in exact same position. Sentences wrapped with `<>` are user inputs.
 

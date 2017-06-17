@@ -51,3 +51,4 @@ app.post('/send', (req, res) => {
 });
 
 app.listen( config.port );
+console.log(`Listening on ${config.host}:${config.port}`);
