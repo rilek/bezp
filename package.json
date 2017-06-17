@@ -4,21 +4,22 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "set PORT=7559 && set NODE_ENV='development' && nodemon -w . -e js,json,pug --ignore templates.js --exec \"babel-node ./app/server.js --presets es2015,stage-0\"",
-    "prebuild": "babel ./app --presets es2015,stage-0 -d build",
-    "build": "set PORT=7559 && set NODE_ENV='production' && node ./build/server.js"
+    "start": "set PORT=7559 && set NODE_ENV='development' && ./node_modules/.bin/nodemon -w . -e js,json,pug --ignore templates.js --exec \"./node_modules/.bin/babel-node ./app/server.js --presets es2015,stage-0\"",
+    "prebuild": "./node_modules/.bin/babel ./app --presets es2015,stage-0 -d dist && ./node_modules/.bin/ncp ./app/templates ./dist/templates",
+    "build": "set PORT=7559 && set NODE_ENV='production' && node ./dist/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.24.1",
     "babel-loader": "^6.4.1",
     "body-parser": "^1.17.2",
-    "copy-webpack-plugin": "^4.0.1",
+    "easypack": "^1.0.0",
     "express": "^4.15.3",
-    "file-loader": "^0.11.2",
     "mysql": "^2.13.0",
-    "pug": "^2.0.0-rc.1",
-    "webpack": "^2.6.1"
+    "ncp": "^2.0.0",
+    "postbuild": "^2.0.0",
+    "pug": "^2.0.0-rc.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -28,6 +29,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.2.2",
     "babel-preset-es2015": "^6.24.0",
-    "babel-preset-stage-0": "^6.22.0"
+    "babel-preset-stage-0": "^6.22.0",
+    "nodemon": "^1.11.0"
   }
 }

@@ -11,7 +11,7 @@ export default class Pool {
       this.str.split( new RegExp(`${config.rowSeparator}${config.cellSeparator}+${config.rowSeparator}${config.cellSeparator}+`, 'g') )
               .map(s => s.split(config.rowSeparator)
                          .map(s => s.split(config.cellSeparator)
-                                    .map(s => typeof s === "string" ? s.rQ() : s)
+                                    .map(s => s.rQ())
                                     .filter(s => s !== ""))
                          .filter(arr => arr.length > 0));
   }

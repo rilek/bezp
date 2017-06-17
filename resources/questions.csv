@@ -12,10 +12,10 @@
 "QUESTIONS";;;;;;
 "Czy lubisz placki? Dlaczego tak.";"input";"null";;;;
 "Bool";"bool";"null";"Zgadzam się";"Nie zgadzam się";;
-"Checkbox";"checkbox";"OTHER:true";"Opcja pierwsza";"Opcja duga";"Opcja trzecia";"Opcja czwarta"
+"Checkbox";"checkbox";"null";"Opcja pierwsza";"Opcja duga";"Opcja trzecia";"Opcja czwarta"
 "Textarea";"textarea";"null";;;;
 "Another input";"input";"null";;;;
-"Radio";"radio";"OTHER:true";"Radio";"Radio2";"Radio3";"Radio4"
+"Radio";"radio";"null";"Radio";"Radio2";"Radio3";"Radio4"
 "Dropdown";"dropdown";"null";"Po pierwsze";"Po drugie";"Po trzecie";
-"Range";"range";"RANGE:1/10";;;;
+"Range";"range";"null";;;;
 "Multi-radio";"multi-radio";"SCALE:Bardzo słabo/Słabo/Średnio/Dobrze/Bardzo dobrze";"Programowanie";"Projektowanie PCB";"Lutowanie";"Granie na nerwach"

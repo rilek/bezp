@@ -9,12 +9,12 @@ import parsePool from './parsePool';
 
 const baseConnection = mysql.createConnection(config.dbConfig);
 
-const fn = pug.compileFileClient(__dirname + '/main.pug', {name: 'fn'});
+const fn = pug.compileFileClient( path.join(__dirname, '/templates/main.pug'), {name: 'fn'});
 fs.writeFileSync( path.join(__dirname, '/../resources/js/', 'templates.js'), fn);
-const thankYouPage = pug.compileFile(__dirname + '/partials/thankYou.pug');
+
+const thankYouPage = pug.compileFile( path.join(__dirname, '/templates/partials/thankYou.pug'));
 
 const app = express();
-
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.text({ type: 'text/html' }));
 if(config.isDev)
@@ -26,7 +26,13 @@ if(config.isDev)
 app.use('/resources', express.static(path.join(__dirname, '/../resources')));
 
 app.get(['/', '/index.html', 'index'], (req, res) => res.sendFile( path.join(__dirname, '/../', 'index.html') ));
-app.get('/pool', (req, res) => res.json(parsePool("./resources/questions.csv")));
+app.get(
+  '/pool',
+  (req, res) => res.json(
+    Object.assign(
+      parsePool(config.poolFilePath),
+      { "questionPrefix": config.questionPrefix }
+)));
 
 app.post('/send', (req, res) => {
   const answers = req.body.answers;
