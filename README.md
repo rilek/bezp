@@ -12,8 +12,7 @@ npm start
 #### Prod
 Configure database connection information in `app/config.js`, and `isDev: false`.
 ```
-npm build
-node dist/server.js
+npm run build
 ```
 
 ## Description
