@@ -1,5 +1,9 @@
 ## Requirements
-`node >= 6.0.0 & npm >= 3.8.0`
+```
+node >= 6.0.0 
+npm >= 3.8.0
+mysql
+```
 
 ## Install
 #### Testing
