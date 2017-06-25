@@ -5,9 +5,9 @@ export default {
   questionPrefix: "Pytanie",
   cellSeparator: ";",
   rowSeparator: "\n",
-  isDev: true,
+  isDev: false,
   dbConfig: {
-    host: "192.168.0.103",
+    host: "192.168.137.1",
     user: "us",
     password: "",
     database: "pool_db"
